@@ -420,17 +420,22 @@ class H(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    for port in range(8000, 8010):
-        try:
-            srv = ThreadingHTTPServer(("127.0.0.1", port), H)
-            break
-        except OSError:
-            continue
+    if "PORT" in os.environ:
+        port = int(os.environ["PORT"])
+        srv = ThreadingHTTPServer(("0.0.0.0", port), H)
+        print(f"Night Shift Detective is live on port {port}")
     else:
-        raise SystemExit("Ports 8000-8009 are all busy. Close other local servers and try again.")
-    url = f"http://127.0.0.1:{port}"
-    print(f"Night Shift Detective is open at {url}  (Ctrl+C to stop)")
-    threading.Timer(.6, lambda: webbrowser.open(url)).start()
+        for port in range(8000, 8010):
+            try:
+                srv = ThreadingHTTPServer(("127.0.0.1", port), H)
+                break
+            except OSError:
+                continue
+        else:
+            raise SystemExit("Ports 8000-8009 are all busy. Close other local servers and try again.")
+        url = f"http://127.0.0.1:{port}"
+        print(f"Night Shift Detective is open at {url}  (Ctrl+C to stop)")
+        threading.Timer(.6, lambda: webbrowser.open(url)).start()
     try:
         srv.serve_forever()
     except KeyboardInterrupt:
