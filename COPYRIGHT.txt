@@ -1,0 +1,10 @@
+Night Shift Detective
+Copyright © 2026 Wilfred Wanyoike. All rights reserved.
+
+This software, including its source code, text, game design, characters, story content and visual design, is the original work of the copyright holder.
+
+Permission is granted to run and play the game for personal, non-commercial use.
+
+Without prior written permission from the copyright holder, you may not copy, modify, redistribute, sell, sublicense or publish any part of it, or create derivative works from it.
+
+The software is provided "as is", without warranty of any kind.

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!-- Night Shift Detective (Gothic Edition 2.0) - Copyright © 2026 Wilfred Wanyoike. All rights reserved. See COPYRIGHT.txt. -->
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#09080d">
+<title>Night Shift Detective</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#09080d;--p1:#1b1624;--p2:#120f18;--line:#3a2e3d;--gold:#b9954a;--gold2:#e3c477;--ink:#dbd1b8;--dim:#8f879a;--crim:#85182c;--crim2:#c93752;--moss:#648f7f;--ember:#d98a3d;
+--serif:"EB Garamond",Georgia,"Times New Roman",serif;--disp:"Cinzel","Trajan Pro",Georgia,serif;--black:"UnifrakturCook","Old English Text MT",Georgia,serif}
+*{box-sizing:border-box}html{-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:19px/1.5 var(--serif);min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse 80% 55% at 50% 0%,#2a1c38 0%,transparent 70%),radial-gradient(ellipse at 50% 110%,#1d0c15 0%,transparent 60%),var(--bg)}
+body::after{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 50% 22% at 25% 85%,rgba(170,160,190,.10),transparent 70%),radial-gradient(ellipse 45% 20% at 80% 60%,rgba(170,160,190,.07),transparent 70%);animation:fog 38s ease-in-out infinite alternate}
+@keyframes fog{to{transform:translate3d(8%,-4%,0)}}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+@media(prefers-reduced-motion:reduce){body::after,.flick{animation:none}}
+#app{max-width:540px;margin:0 auto;padding:0 14px 96px}
+header{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:6px;padding:calc(8px + env(safe-area-inset-top,0px)) 0 10px;background:linear-gradient(var(--bg) 75%,transparent)}
+header .ttl{font:700 .72rem var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-align:center}
+.ic{font:700 .8rem var(--disp);background:var(--p2);color:var(--gold2);border:1px solid var(--gold);padding:7px 11px;cursor:pointer;min-width:38px}
+.ic:disabled{opacity:.25;cursor:default}
+h1,h2,h3{font-family:var(--disp);font-weight:700;letter-spacing:.06em;margin:.3em 0 .4em;color:var(--gold2)}
+h1.blk{font:700 2.9rem/1 var(--black);letter-spacing:0;color:#ead9aa;text-shadow:0 0 18px rgba(217,138,61,.45),0 2px 0 #000;margin:.2em 0}
+.flick{animation:flick 6s infinite}
+@keyframes flick{0%,100%{text-shadow:0 0 18px rgba(217,138,61,.45),0 2px 0 #000}46%{text-shadow:0 0 28px rgba(217,138,61,.75),0 2px 0 #000}50%{text-shadow:0 0 9px rgba(217,138,61,.3),0 2px 0 #000}54%{text-shadow:0 0 24px rgba(217,138,61,.6),0 2px 0 #000}}
+h2{font-size:1.15rem;text-transform:uppercase}h3{font-size:.95rem;text-transform:uppercase}
+.card{background:linear-gradient(180deg,var(--p1),var(--p2));border:1px solid var(--gold);box-shadow:inset 0 0 0 4px var(--p2),inset 0 0 0 5px rgba(185,149,74,.4),0 8px 26px #000a;padding:16px 20px;margin:0 0 14px;position:relative;color:var(--ink);font:inherit;text-align:left}
+.card.slim{padding:10px 20px}
+.card::before,.card::after{content:"❦";position:absolute;color:var(--gold);opacity:.5;font-size:.75rem;line-height:1}
+.card::before{top:6px;left:9px}.card::after{bottom:6px;right:9px;transform:rotate(180deg)}
+button.pick{display:block;width:100%;cursor:pointer}button.pick:hover{box-shadow:inset 0 0 0 4px var(--p2),inset 0 0 0 5px rgba(185,149,74,.7),0 0 18px rgba(217,138,61,.3)}
+.lore{font-style:italic;color:#bdb2a3}.dim{color:var(--dim);font-size:.9rem}
+.c{text-align:center}.fine{text-align:center;color:#5d556a;font-size:.75rem;margin:26px 0 0}
+.orn{color:var(--gold);letter-spacing:.6em;margin:.3em 0;font-size:.9rem}
+.sub{font:500 .74rem var(--disp);letter-spacing:.3em;text-transform:uppercase;color:var(--moss);margin:.2em 0 .6em}
+.btn{display:block;font:700 .8rem var(--disp);letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(#2b1c24,#190f15);color:var(--gold2);border:1px solid var(--gold);padding:13px 14px;cursor:pointer;text-align:center}
+.btn:hover:not(:disabled){box-shadow:0 0 14px rgba(217,138,61,.35);color:#fff1c9}
+.btn.p{background:linear-gradient(#85182c,#4b0c18);border-color:var(--crim2);color:#f6e8c8}
+.btn.g{background:transparent;border-color:var(--line);color:var(--dim)}
+.btn:disabled{opacity:.3;cursor:not-allowed}
+.btn small{display:block;font:italic 400 .8rem var(--serif);letter-spacing:0;text-transform:none;color:var(--dim);margin-top:2px}
+.btn em{display:block;font:700 .68rem var(--disp);font-style:normal;color:var(--ember);margin-top:3px;letter-spacing:.1em}
+.wide{width:100%;margin:0 0 10px}
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.acts .btn{padding:10px 3px}
+.pager{display:flex;align-items:center;justify-content:space-between;font:500 .7rem var(--disp);letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+.pager2{display:flex;gap:10px}.pager2 .btn{flex:1}
+.dots{text-align:center;margin:16px 0 4px}.dots i{display:inline-block;width:7px;height:7px;border:1px solid var(--gold);transform:rotate(45deg);margin:0 5px}.dots i.on{background:var(--gold)}
+.hud{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 14px}
+.hud span{font:600 .64rem var(--disp);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}.hud b{color:var(--gold2);font:700 .85rem var(--disp);float:right}
+.bar{height:8px;background:#050408;border:1px solid #5a4a2e;margin-top:5px;position:relative}.bar i{display:block;height:100%;transition:width .4s}
+.bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--gold2)}
+.msg{border-left:2px solid var(--crim2);background:rgba(133,24,44,.14);padding:8px 14px;margin-bottom:14px;font-style:italic}.msg p{margin:5px 0}
+.clue{display:block;width:100%;text-align:left;background:var(--p2);color:var(--ink);border:1px solid var(--line);padding:10px 14px;margin-bottom:9px;font:inherit;cursor:pointer}
+.clue.on{border-color:var(--gold2);background:#241a14;box-shadow:0 0 12px rgba(217,138,61,.25)}
+.hid{background:rgba(100,143,127,.1);border:1px solid var(--moss);padding:10px 14px;margin-bottom:9px;font-style:italic}
+.tag{display:inline-block;font-size:.8rem;border:1px solid var(--line);padding:1px 9px;margin:3px 5px 3px 0;color:var(--dim)}.tag.ok{color:var(--moss);border-color:var(--moss)}
+.cleared h3{text-decoration:line-through;opacity:.6}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:6;display:flex;background:#07060a;border-top:1px solid var(--gold);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;background:none;border:0;color:var(--dim);font:700 .62rem var(--disp);letter-spacing:.1em;text-transform:uppercase;padding:14px 2px;cursor:pointer}
+nav button.on{color:var(--gold2);box-shadow:inset 0 -2px 0 var(--crim2)}
+.slot{display:flex;justify-content:space-between;align-items:center;gap:10px}.slot .btn{padding:9px 12px}.slotb{display:flex;gap:6px;flex-shrink:0}
+input{width:100%;font:inherit;background:#07060a;color:var(--ink);border:1px solid var(--gold);padding:12px;margin:8px 0;text-align:center;letter-spacing:.06em}
+.err{color:var(--crim2);font-style:italic;margin:4px 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stats div{border:1px solid var(--line);padding:8px;text-align:center}.stats b{display:block;font:700 1.3rem var(--disp);color:var(--gold2)}.stats span{font-size:.75rem;color:var(--dim)}
+#toast{position:fixed;top:60px;left:50%;transform:translate(-50%,-12px);background:#07060a;border:1px solid var(--gold);color:var(--gold2);padding:10px 18px;font-style:italic;opacity:0;pointer-events:none;transition:.3s;z-index:20;max-width:90%;text-align:center}#toast.show{opacity:1;transform:translate(-50%,0)}
+.demo{border:1px dashed var(--line);padding:10px 12px;margin:10px 0;font-size:.92rem}
+.step{font:500 .68rem var(--disp);letter-spacing:.2em;color:var(--moss);text-transform:uppercase}
+.tut p{margin:.55em 0}.tut b{color:var(--gold2);font-weight:600}
+details summary{cursor:pointer;color:var(--dim);font:500 .68rem var(--disp);letter-spacing:.14em;text-transform:uppercase;margin-top:4px}details p{margin:.5em 0 0}
+.arch{margin:0 auto;display:block}
+</style></head><body><div class="grain"></div><div id="app"></div><div id="toast"></div>
+<script>
+const DET={eye:["The Sharp Eye","Misses nothing. Search and Follow uncover clues 20% more often.","◉"],
+talker:["The Smooth Talker","Silver-tongued. Interviews win rapport 50% faster, add +2 Trust, and liars slip half as often.","❝"],
+lab:["The Lab Rat","Methodical. Searches cost 1 less Time and every true clue is worth +3 Evidence.","⚗\uFE0E"]};
+const DIF=[["rookie","Rookie","Witnesses speak true. Actions cost ×0.75 Time. Only 2 red herrings."],
+["detective","Detective","Witnesses lie about 15% of the time. Normal Time costs. 4 red herrings."],
+["inspector","Inspector","Witnesses lie about 35% of the time. Actions cost ×1.4 Time. 7 red herrings. One wrong accusation ends the case."]];
+const DIFL={rookie:"Rookie",detective:"Detective",inspector:"Inspector"};
+const ACT={interview:["Interview","Press for answers","❝"],search:["Search","Sift the shadows","⌕"],follow:["Follow","Pursue unseen","☙"]};
+const SLOTL={auto:"Autosave",1:"Case File I",2:"Case File II",3:"Case File III"};
+const ARCH=`<svg viewBox="0 0 120 150" width="96" class="arch" aria-hidden="true"><defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c1d3b"/><stop offset="1" stop-color="#0d0a12"/></linearGradient></defs><path d="M12 148V66Q12 22 60 6Q108 22 108 66V148Z" fill="url(#ag)" stroke="#b9954a" stroke-width="2.5"/><path d="M22 148V68Q22 32 60 18Q98 32 98 68V148Z" fill="none" stroke="#b9954a" stroke-opacity=".45"/><circle cx="60" cy="50" r="15" fill="#e3c477" opacity=".92"/><circle cx="67" cy="46" r="13" fill="#2a1c38"/><path d="M60 18V148M22 100H98" stroke="#b9954a" stroke-opacity=".55"/><path d="M30 148l6-14 6 14M78 148l6-14 6 14" stroke="#b9954a" stroke-opacity=".5" fill="none"/></svg>`;
+const TUT=[
+["Welcome, Detective","<p class=lore>Hallowmere College sleeps beneath the fog, and something precious has been stolen.</p><p>Five students are whispered about. <b>One is guilty.</b> You have <b>twelve nights</b> to learn who, and to gather enough proof that the Governors will believe you.</p><p class=dim>This guide takes about two minutes. Reopen it any time from the Guide tab.</p>"],
+["The Three Meters","<p><b>Trust</b> is the college’s faith in you. It starts at 100. Careless prying wears it down, and at 0 the Governors dismiss you and the case goes cold.</p><p><b>Evidence</b> starts at 0 and grows with every true clue. You need <b>60</b> to prove your case.</p><p><b>Time</b> starts full and every action spends some. When it runs out, so does the case.</p>"],
+["Your Nights","<p>Each night you have <b>3 actions</b>, spent at the four to six places offered. Use the <b>◀ ▶</b> buttons to walk between them.</p><p>When your actions are spent, or whenever you choose, end the night. The bell tolls, new places appear, and the case is <b>saved automatically</b>.</p><div class=demo><div class=pager><span>◀</span><span>Place 2 of 5</span><span>▶</span></div><b>The Reading Vault</b><br><span class=dim>Candles gutter between towers of unread books.</span></div>"],
+["Three Ways to Investigate","<p><b>Interview</b> (3 Time): speak with whoever is present. It builds Trust and rapport and may yield testimony. On harder levels witnesses sometimes lie.</p><p><b>Search</b> (2 Time): sift the place for physical clues. Cheap, but a clumsy search can cost a little Trust.</p><p><b>Follow</b> (4 Time): trail the person here. Costly and risky for Trust and rapport, yet it can reveal what nothing else will.</p><p class=dim>The costs on each button already include your difficulty.</p>"],
+["The Case Board","<p>Every clue you find is pinned to the <b>Board</b>. Tap two clues, then <b>Connect</b> them.</p><p>If both are true and describe the <b>same detail from different sources</b> (an object you found, and the same object a witness describes) a <b>hidden scene</b> unfolds for <b>+12 Evidence</b>.</p><p><b>Red herrings</b> are false leads that point at the innocent. Connecting them wastes 3 Time.</p>"],
+["The Suspects","<p>Each suspect carries an <b>item</b>, haunts a <b>place</b> and has a <b>habit</b>. Match your clues to their dossiers. The thread count shows how many clues point at each suspect, but not every clue is true.</p><p>Interviewing a suspect builds <b>rapport</b>. At <b>60</b> they reveal a secret. An innocent is <b>cleared</b>. The culprit confesses a motive worth <b>+15 Evidence</b>.</p>"],
+["Naming the Guilty","<p>You may <b>Accuse</b> at any time from the Suspects page.</p><p>The right culprit with <b>60 Evidence</b> is a <b>Case Closed</b>. The right culprit with thin proof is a <b>Partial Solution</b>. Trust or Time at 0 is a <b>Cold Case</b>.</p><p>A wrong accusation costs 12 Time and 15 Trust, but on <b>Inspector</b> it ends the case as a <b>False Accusation</b>.</p><p>Once a secret is revealed you may <b>Keep secret</b> instead, a quiet and merciful ending.</p>"],
+["Pause, Save, Return","<p>Tap <b>Pause</b> at any time to save your case into one of three Case Files, return to it, or leave to the menu. The game also saves itself at the start of every night.</p><p>When you come back, choose <b>Resume the latest case</b>, or open <b>Case Files</b> to load a specific one.</p><p class=lore>The fog will wait. Good luck, Detective.</p>"]];
+let V=null,S=[],U=null,P=null,err="",scr="auth",tab="night",ts=0,li=0,pd=null,sel=[],lastName="",lk="",H=[],hi=0;
+try{lastName=localStorage.getItem("nsd_name")||""}catch(e){}
+const $=s=>document.getElementById(s),cap=s=>s?s[0].toUpperCase()+s.slice(1):"";
+let tt;function toast(m){const e=$("toast");e.textContent=m;e.className="show";clearTimeout(tt);tt=setTimeout(()=>e.className="",2800)}
+const snap=()=>({scr,tab,ts});
+function reset(){H=[snap()];hi=0}
+function to(s,t){const nt=t||tab;if(s==scr&&nt==tab)return;scr=s;tab=nt;H=H.slice(0,hi+1);H.push(snap());hi=H.length-1;draw()}
+function rest(s){scr=s.scr;tab=s.tab;ts=s.ts;if(["game","pause"].includes(scr)&&!V)scr="title";draw()}
+function back(){if(hi>0){hi--;rest(H[hi])}}
+function fwd(){if(hi<H.length-1){hi++;rest(H[hi])}}
+async function api(p,b,dest){let j;
+ try{const r=await fetch(p,{method:b?"POST":"GET",headers:{"Content-Type":"application/json"},body:b?JSON.stringify(b):undefined});j=await r.json()}
+ catch(e){toast("The server is silent. Is app.py still running?");return}
+ const had=!!V;V=j.game;U=j.user;P=j.profile;S=j.slots||[];err=j.error||"";if(j.note)toast(j.note);
+ let s=scr;if(!U)s="auth";else if(scr=="auth")s="title";
+ if(dest&&U)s=V||dest=="title"?dest:"title";
+ if(V&&V.over)s="over";else if(!V&&["game","pause","over"].includes(s))s="title";
+ if(s!=scr||!!V!=had||dest){scr=s;if(s=="game"){tab="night";li=0}reset()}
+ draw()}
+const mt=(n,v,c,k)=>`<div><span>${n}</span><b>${v}</b><div class=bar><i style="width:${v}%;background:${c}"></i>${k?`<u style="left:${k}%"></u>`:""}</div></div>`;
+function draw(){const a=$("app"),T={auth:"",title:"Hallowmere College",tut:"The Detective’s Guide",det:"Choose Your Detective",dif:"Choose Your Peril",pause:"The Watch Is Paused",saves:"Case Files",profile:"Detective’s Record",over:"The Case Ends",game:V?(V.final?"The Last Night":"Night "+V.night+" of 12"):""};
+ const hd=scr=="auth"?"":`<header><button class=ic ${hi>0?"":"disabled"} onclick=back() aria-label="Back">◀</button><button class=ic ${hi<H.length-1?"":"disabled"} onclick=fwd() aria-label="Forward">▶</button><b class=ttl>${T[scr]}</b>${scr=="game"?`<button class=ic onclick="to('pause')">❚❚ Pause</button>`:"<i></i>"}</header>`;
+ a.innerHTML=hd+`<main>${({auth,title,tut,det,dif,game,pause,saves,profile,over})[scr]()}</main>`+(scr=="game"?navbar():"")+`<p class=fine>© 2026 Wilfred Wanyoike. All rights reserved.</p>`;
+ const k=scr+tab+ts+li;if(k!==lk){window.scrollTo(0,0);lk=k}}
+function auth(){return `<div class=c style="padding-top:7vh">${ARCH}<h1 class="blk flick">Night Shift Detective</h1><p class=sub>Hallowmere College</p><div class=orn>✠ ❦ ✠</div><p class=lore>Sign the visitors’ ledger. No password is needed, only the name by which you wish to be known.</p>
+<form onsubmit="enter();return false"><input id=un maxlength=20 placeholder="Your name" autocomplete=off autocapitalize=none value="${lastName}">${err?`<p class=err>${err}</p>`:""}<button class="btn p wide">Enter the college</button></form></div>`}
+function enter(){const n=$("un").value.trim();lastName=n;try{localStorage.setItem("nsd_name",n)}catch(e){}api("/api/enter",{name:n})}
+function title(){const has=S.some(x=>!x.empty);return `<div class=c>${ARCH}<h1 class="blk flick">Night Shift Detective</h1><p class=sub>A Gothic Mystery</p><div class=orn>✠ ❦ ✠</div>
+<p class=lore>Five suspects. One buried truth. Twelve nights until the Governors arrive.</p><p class=dim>Welcome back, ${U}.</p>
+${P&&!P.tut?`<div class=card><b>First night at Hallowmere?</b><p class=dim>Read the guide before you begin. It takes two minutes.</p><button class="btn p" style="width:100%" onclick="ts=0;to('tut')">Read the guide</button></div>`:""}
+<button class="btn ${P&&!P.tut?"":"p"} wide" onclick="to('det')">Begin a new case</button>
+${has?`<button class="btn wide" onclick="api('/api/load',{slot:'latest'},'game')">Resume the latest case</button><button class="btn wide" onclick="to('saves')">Case files</button>`:""}
+<button class="btn wide" onclick="ts=0;to('tut')">The detective’s guide</button><button class="btn wide" onclick="to('profile')">Detective’s record</button>
+<button class="btn g wide" onclick="api('/api/logout',{})">Change detective</button></div>`}
+function tut(){const t=TUT[ts],last=ts==TUT.length-1;return `<div class="card tut"><div class=step>Page ${ts+1} of ${TUT.length}</div><h2>${t[0]}</h2>${t[1]}</div>
+<div class=pager2><button class=btn ${ts?"":"disabled"} onclick="ts--;draw()">◀ Previous</button>${last?`<button class="btn p" onclick="finishTut()">${V?"Back to the case":"Begin"}</button>`:`<button class=btn onclick="ts++;draw()">Next ▶</button>`}</div>
+<div class=dots>${TUT.map((_,i)=>`<i class="${i==ts?"on":""}"></i>`).join("")}</div>`}
+function finishTut(){api("/api/tutorial",{});V?to("game"):to("title")}
+function det(){return `<p class=lore>Who will walk the corridors tonight?</p>`+Object.entries(DET).map(([k,d])=>`<button class="card pick" onclick="pd='${k}';to('dif')"><h3>${d[2]} ${d[0]}</h3><span class=dim>${d[1]}</span></button>`).join("")}
+function dif(){return `<p class=lore>How deep do you wish to descend?</p>`+DIF.map(d=>`<button class="card pick" onclick="api('/api/new',{det:'${pd}',diff:'${d[0]}'},'game')"><h3>${d[1]}</h3><span class=dim>${d[2]}</span></button>`).join("")}
+function rows(save){return S.map(x=>`<div class="card slot"><div><b>${SLOTL[x.slot]}</b><br><span class=dim>${x.empty?"Empty":`Night ${x.night} · ${DET[x.det][0]} · ${DIFL[x.diff]} · Evidence ${x.evidence}<br>${x.saved.slice(0,16)}`}</span></div><div class=slotb>
+${save?(x.slot=="auto"?"":`<button class=btn onclick="${x.empty?"":"if(!confirm('Overwrite this case file?'))return;"}api('/api/save',{slot:'${x.slot}'})">Save here</button>`):(x.empty?"":`<button class="btn p" onclick="${V?"if(!confirm('Replace the case in progress?'))return;":""}api('/api/load',{slot:'${x.slot}'},'game')">Load</button>`)+(x.slot!="auto"&&!x.empty?`<button class="btn g" aria-label="Delete" onclick="if(confirm('Burn this case file?'))api('/api/delete',{slot:'${x.slot}'})">✕</button>`:"")}</div></div>`).join("")}
+function saves(){return `<p class=lore>Cases set aside, waiting for you to return.</p>`+rows(false)}
+function pause(){return `<div class=card><h2>The watch is paused</h2><p class=lore>The fog holds its breath. Nothing stirs until you return.</p><button class="btn p" style="width:100%" onclick="to('game')">Resume the case</button></div>
+<h3>Save the case</h3>${rows(true)}<button class="btn wide" onclick="to('saves')">Case files</button><button class="btn wide" onclick="ts=0;to('tut')">The detective’s guide</button>
+<button class="btn g wide" onclick="if(confirm('Leave to the main menu? Progress since your last save will be lost.'))api('/api/exit',{},'title')">Leave the case</button>`}
+function profile(){const s=P||{},w=s.played?Math.round(100*s.closed/s.played):0,rank=s.closed>=10?"Chief Inspector":s.closed>=5?"Inspector":s.closed>=1?"Detective":"Trainee";
+ return `<div class=c>${ARCH}<h2>${s.name}</h2><p class=dim>${rank} · ${w}% solved · Admitted ${s.joined}</p></div><div class=card><div class=stats><div><b>${s.played}</b><span>Cases played</span></div><div><b>${s.closed}</b><span>Closed</span></div><div><b>${s.partial}</b><span>Partial</span></div>
+<div><b>${s.cold}</b><span>Cold cases</span></div><div><b>${s.false}</b><span>Wrong accusations</span></div><div><b>${s.quiet}</b><span>Quiet endings</span></div></div></div><button class="btn g wide" onclick="api('/api/logout',{})">Change detective</button>`}
+function over(){const o=V.over,g={"Case Closed":"✠","Partial Solution":"❦","Cold Case":"☾","False Accusation":"⚖\uFE0E"}[o.t]||"✦";
+ return `<div class=c><div style="font-size:3rem;color:var(--gold2)">${g}</div><h1 style="font-size:1.8rem">${o.t}</h1><div class=orn>✠ ❦ ✠</div></div><div class="card lore">${o.x}</div>
+<div class="card slim dim">Nights endured: ${Math.min(V.night,12)} · Trust ${V.m.trust} · Evidence ${V.m.evidence} · Time ${V.m.time}</div>
+<button class="btn p wide" onclick="api('/api/exit',{});to('det')">Open a new case</button><button class="btn wide" onclick="to('saves')">Case files</button><button class="btn g wide" onclick="api('/api/exit',{},'title')">Return to the menu</button>`}
+function game(){const m=V.m,msg=V.msg.length?`<div class=msg>${V.msg.map(x=>`<p>${x}</p>`).join("")}</div>`:"";
+ return `<div class=hud>${mt("Trust",m.trust,"var(--moss)")}${mt("Evidence",m.evidence,"var(--gold)",V.need)}${mt("Time",m.time,"var(--ember)")}</div>${msg}${({night,board,suspects})[tab]()}`}
+const navbar=()=>`<nav>${[["night","☾ Night"],["board","✠ Board ("+V.clues.length+")"],["suspects","⚜\uFE0E Suspects"],["guide","? Guide"]].map(([k,l])=>`<button class="${tab==k?"on":""}" onclick="${k=="guide"?"ts=0;to('tut')":`to('game','${k}')`}">${l}</button>`).join("")}</nav>`;
+function night(){if(V.final)return `<div class=card><h3>The shift is over</h3><p class=lore>Twelve nights are gone. Study the Suspects page and name the guilty, or seal the file.</p><button class="btn g" style="width:100%" onclick="if(confirm('Seal the file as a cold case?'))api('/api/cold',{})">Seal the file</button></div>`;
+ const n=V.scenes.length;li=Math.min(li,n-1);const s=V.scenes[li];
+ return `<div class="card slim"><b>Night ${V.night} of 12</b> · ${V.acts} of 3 actions remain<details><summary>The case file</summary><p>${cap(V.crime)}. The deed was done at ${V.cp}, near ${V.T}. ${V.need} Evidence is needed to prove your case.</p></details></div>
+<div class=card><div class=pager><button class=ic ${li?"":"disabled"} onclick="li--;draw()" aria-label="Previous place">◀</button><span>Place ${li+1} of ${n}</span><button class=ic ${li<n-1?"":"disabled"} onclick="li++;draw()" aria-label="Next place">▶</button></div>
+<h2>The ${s.loc}</h2><p class=lore>${s.txt}</p><p>${s.who>=0?`<b>${V.sus[s.who].name}</b> lingers here, watching you.`:`You find ${s.wit}.`}</p>
+<div class=acts>${["interview","search","follow"].map(k=>`<button class=btn ${V.acts?"":"disabled"} onclick="api('/api/act',{i:${li},a:'${k}'})">${ACT[k][2]} ${ACT[k][0]}<small>${ACT[k][1]}</small><em>◷ ${V.cost[k]} Time</em></button>`).join("")}</div></div>
+<button class="btn ${V.acts?"g":"p"} wide" onclick="li=0;api('/api/night',{})">${V.acts?"Call it a night":"Let the night end"}</button>`}
+function tog(id){sel=sel.includes(id)?sel.filter(x=>x!=id):[...sel,id].slice(-2);draw()}
+function board(){return `<h2>The case board</h2><p class=lore>Tap two clues that seem to point at the same thing, then draw the thread between them.</p>`+
+(V.clues.length?V.clues.map(c=>`<button class="clue ${sel.includes(c.id)?"on":""}" onclick="tog(${c.id})">${ACT[c.t][2]} ${c.text}</button>`).join(""):`<div class="card slim dim">No clues yet. Walk the halls and ask questions.</div>`)+
+`<button class="btn p wide" style="margin-top:6px" ${sel.length==2?"":"disabled"} onclick="api('/api/connect',{a:${sel[0]},b:${sel[1]}});sel=[]">Connect the threads</button>`+
+(V.hidden.length?`<h3>Hidden scenes</h3>`+V.hidden.map(h=>`<div class=hid>${h}</div>`).join(""):"")}
+function suspects(){return `<h2>The suspects</h2><p class=lore>Rapport of 60 loosens a tongue. The ✦ counts the clues that point at each soul.</p>`+V.sus.map((s,i)=>`<div class="card ${s.cleared?"cleared":""}"><h3>${s.name}</h3>
+<span class=dim>${s.major} student</span><div><span class=tag>${s.item}</span><span class=tag>Haunts the ${s.haunt}</span><span class=tag>${s.habit}</span><span class="tag ok">✦ ${s.links}</span>${s.cleared?`<span class="tag ok">cleared</span>`:""}</div>
+<div class=dim>Rapport ${s.trust}/60<div class=bar><i style="width:${Math.min(100,s.trust/.6)}%;background:var(--moss)"></i></div></div>
+${s.open?`<p class=lore>✦ ${s.name.split(" ")[0]} ${s.secret}.</p>`:""}
+<div class=acts style="grid-template-columns:1fr 1fr"><button class="btn p" onclick="if(confirm('Accuse ${s.name}?'))api('/api/accuse',{i:${i}})">Accuse</button>
+<button class="btn g" ${s.open?"":"disabled"} onclick="if(confirm('Keep ${s.name}’s secret and close the case quietly?'))api('/api/spare',{i:${i}})">Keep secret</button></div></div>`).join("")}
+api("/api/state");
+</script></body></html>
