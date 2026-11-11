@@ -13,10 +13,10 @@ A gothic mystery for the browser, powered
 - Tap **Pause** in a case to save it into Case File I, II or III, open the guide, or leave to the menu.
 - The game also saves itself at the start of every night (Autosave).
 - From the menu choose **Resume the latest case** or **Case files** to load one.
-- Files are stored in `saves/<your name>/`. Delete a folder to remove a detective's saves. `users.json` holds the records.
+ 
 
 ## Fonts
-The look uses Google Fonts (Cinzel, EB Garamond, UnifrakturCook). With no internet connection it falls back to your system serif fonts and still works.
+The look uses Google Fonts (Cinzel, EB Garamond, UnifrakturCook).  
 
 ## Copyright
-Copyright © 2026 Wilfred Wanyoike. All rights reserved. See COPYRIGHT.txt.
+Copyright © 2026 Wilfred Wanyoike. All rights reserved.  
